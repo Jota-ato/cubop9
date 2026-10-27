@@ -1,0 +1,45 @@
+{
+  "name": "cubop-9-strapi",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Strapi application",
+  "scripts": {
+    "build": "strapi build",
+    "console": "strapi console",
+    "deploy": "strapi deploy",
+    "dev": "strapi develop",
+    "develop": "strapi develop",
+    "seed:example": "node ./scripts/seed.js",
+    "start": "strapi start",
+    "strapi": "strapi",
+    "upgrade": "npx @strapi/upgrade latest",
+    "upgrade:dry": "npx @strapi/upgrade latest --dry"
+  },
+  "dependencies": {
+    "@strapi/database": "5.59.0",
+    "@strapi/plugin-cloud": "5.59.0",
+    "@strapi/plugin-users-permissions": "5.59.0",
+    "@strapi/strapi": "5.59.0",
+    "better-sqlite3": "12.11.1",
+    "fs-extra": "^10.0.0",
+    "mime-types": "^2.1.27",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.30.3",
+    "styled-components": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=20.0.0 <=26.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "53da6a16-250d-49ac-838f-f68a7374ecbf",
+    "installId": "01ed580f64aa6c4ab26fc82e2cab84ee42d6702dd1172325232e4c241c5c4a2c"
+  }
+}
