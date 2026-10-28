@@ -1,15 +1,20 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../components/layout/layout.astro";
 import { getHomePageData } from "../services/home";
 
 const { titleHero, description, heroImage } = await getHomePageData();
-console.log(heroImage);
 ---
 
 <Layout title="Cubo P9 - Inicio">
   <header>
     <h1>{titleHero}</h1>
     <p>{description}</p>
-    <img src={heroImage} alt="Hero Image" />
+    <Image
+      width={heroImage.width}
+      height={heroImage.height}
+      src={heroImage.url}
+      alt={heroImage.alternativeText || "Hero image"}
+    />
   </header>
 </Layout>

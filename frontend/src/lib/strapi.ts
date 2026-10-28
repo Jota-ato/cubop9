@@ -1,4 +1,4 @@
-const { STRAPI_URL = 'http://localhost:1337', STRAPI_TOKEN } = import.meta.env;
+import { STRAPI_TOKEN, STRAPI_URL } from "./env";
 
 interface FetchOptions extends RequestInit {
     query?: Record<string, string | number>;
