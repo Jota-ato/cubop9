@@ -11,9 +11,22 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
+    "titleHero": {
       "type": "string",
       "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "heroImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
     }
   }
 }

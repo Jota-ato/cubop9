@@ -1,24 +1,15 @@
 ---
 import Layout from "../components/layout/layout.astro";
-import { fetchStrapi } from "../lib/strapi.ts";
+import { getHomePageData } from "../services/home";
 
-let response = null;
-
-try {
-  response = await fetchStrapi("/home-page");
-  console.log("Datos de Strapi:", response);
-} catch (error) {
-  console.error("Error al conectar con Strapi:", error);
-}
-
-console.log("Suma:", 2 + 2);
+const { titleHero, description, heroImage } = await getHomePageData();
+console.log(heroImage);
 ---
 
-<Layout title="My Astro App">
+<Layout title="Cubo P9 - Inicio">
   <header>
-    <h1>{response.title}</h1>
+    <h1>{titleHero}</h1>
+    <p>{description}</p>
+    <img src={heroImage} alt="Hero Image" />
   </header>
-  <main>
-    <pre>{JSON.stringify(response, null, 2)}</pre>
-  </main>
 </Layout>

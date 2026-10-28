@@ -1,21 +1,32 @@
-const STRAPI_URL = import.meta.env.STRAPI_URL || 'http://localhost:1337';
-const STRAPI_TOKEN = import.meta.env.STRAPI_TOKEN;
+const { STRAPI_URL = 'http://localhost:1337', STRAPI_TOKEN } = import.meta.env;
 
-export async function fetchStrapi(endpoint: string) {
+interface FetchOptions extends RequestInit {
+    query?: Record<string, string | number>;
+}
+
+export async function fetchStrapi<T>(endpoint: string, options: FetchOptions = {}): Promise<T> {
+    const { query, ...fetchOptions } = options;
     const url = new URL(`/api${endpoint}`, STRAPI_URL);
 
-    console.log(STRAPI_TOKEN)
+    if (query) {
+        Object.entries(query).forEach(([key, value]) => {
+            url.searchParams.append(key, String(value));
+        });
+    }
 
     const res = await fetch(url.toString(), {
+        ...fetchOptions,
         headers: {
             Authorization: `Bearer ${STRAPI_TOKEN}`,
+            'Content-Type': 'application/json',
+            ...fetchOptions.headers,
         },
     });
 
     if (!res.ok) {
-        throw new Error(`Error al conectar con Strapi: ${res.statusText}`);
+        throw new Error(`Error en la petición a Strapi [${res.status}]: ${res.statusText}`);
     }
 
-    const data = await res.json();
-    return data.data;
+    const json = await res.json();
+    return json.data;
 }
